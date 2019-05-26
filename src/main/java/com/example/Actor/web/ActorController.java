@@ -33,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
@@ -65,6 +66,7 @@ public class ActorController {
     @Autowired
     MessageSource msg;
 
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
@@ -82,6 +84,7 @@ public class ActorController {
         modelDump(model, "index");
         return "Actor/index";
     }
+
 
     @RequestMapping(value = "/actor/{id}", method = RequestMethod.GET)
     public ModelAndView detail(@PathVariable Integer id) {
